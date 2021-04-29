@@ -94,3 +94,10 @@ It should accept two range query params that limit the returned scores
     }]
 }]
 ```
+
+---
+**Note**
+
+For each task please provide some simple unit tests. We don't expect all edge cases to be covered.
+
+---
