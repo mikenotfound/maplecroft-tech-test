@@ -1,9 +1,5 @@
 # maplecroft-tech-test
 
-[![Build Status](https://travis-ci.org/maplecroft/maplecroft-tech-test.svg?branch=master)](https://travis-ci.org/maplecroft/maplecroft-tech-test)
-[![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Django_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
-
-"The maplecroft technical test". Check out the project's [documentation](http://maplecroft.github.io/maplecroft-tech-test/).
 
 # Prerequisites
 
