@@ -19,6 +19,9 @@ class Command(BaseCommand):
 
         now = timezone.now()
 
+        Index.objects.all()
+        IndexVersion.objects.all()
+
         for index in tqdm(indices, total=len(indices)):
             index = Index(name=index)
             index.save()
