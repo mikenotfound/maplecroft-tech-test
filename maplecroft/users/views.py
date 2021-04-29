@@ -13,7 +13,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsUserOrReadOnly,)
+    permission_classes = (AllowAny,)
 
 
 class UserCreateViewSet(mixins.CreateModelMixin,
