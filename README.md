@@ -1,15 +1,51 @@
 # maplecroft-tech-test
 
-[![Build Status](https://travis-ci.org/maplecroft/maplecroft-tech-test.svg?branch=master)](https://travis-ci.org/maplecroft/maplecroft-tech-test)
-[![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Django_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
+Welcome to the maplecroft techinical test! This project contains an api only pre-built django application.
 
-"The maplecroft technical test". Check out the project's [documentation](http://maplecroft.github.io/maplecroft-tech-test/).
+Maplecroft is a global risk analytics company that aims to standardise risk across a variety of different issues across the world.
+Maplecroft refers to these different issues as "indices", for example we have an enviromental risk called Air Quality. 
+
+The project contains two simple models that represent an issue/index: `Index` and a score in time for that index: `IndexVersion`.
+
+To get started all you need is [Docker](https://docs.docker.com/):
+
+# Getting started
+
+Start the dev server for local development:
+
+```bash
+docker-compose up
+```
+
+Create a superuser to login to the admin:
+
+```bash
+docker-compose run --rm web ./manage.py createsuperuser
+```
+
+Load into some data
+
+```bash
+docker-compose run --rm web ./manage.py load_data
+```
+
+If you need to access the django shell you run 
+
+```bash
+docker-compose run --rm web ./manage.py shell
+```
+
+---
+**Note**
+
+If you need to reload the database at any time simply re-run the load_data command
+
+---
 
 
-The project contains two simple models `Index` and `IndexVersion` that we are going to populate using
-the data in .csv
+# Tasks
 
-Your tasks are to create the following api endpoints that (for details see below) 
+Your task is to update the `index` app to include the following api endpoints (for further details see below) 
 
 1. `/index/` - this endpoint should return all indices with there associated versions attached
 2. `/stats` - this endpoint should return the max, min and median
@@ -42,36 +78,23 @@ Return a list of stats objects that represent the maximum, minimum and median fo
     max: decimal
     median: decimal
 }]
-
 ```
 
 ### Task 3 - Windowed/Average
 A common way to display a large amount of historical data points on a graph is to average over a window.
 If we set the window to be a 24h period starting at 12pm (noon) your challenge is to aggregate all values
-for this period and provide a single mean.
+for the preceding 24 hours and provide a single mean score.
 
 It should accept two range query params that limit the returned scores
 
 ```
-
-
+[{
+    id: int,
+    name: string,
+    averaged_scores: [{
+        timestamp: iso_format_string, #12pm,
+        score: # average of scores within last 24 hours        
+    }]
+}]
 ```
 
-
-
-# Prerequisites
-
-- [Docker](https://docs.docker.com/docker-for-mac/install/)  
-
-# Local Development
-
-Start the dev server for local development:
-```bash
-docker-compose up
-```
-
-Run a command inside the docker container:
-
-```bash
-docker-compose run --rm web [command]
-```
