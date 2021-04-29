@@ -2,14 +2,15 @@
 
 Welcome to the maplecroft techinical test! This project contains an api only pre-built django application.
 
-Maplecroft is a global risk analytics company that aims to standardise risk across a variety of different issues across the world.
-Maplecroft refers to these different issues as "indices", for example we have an enviromental risk called Air Quality. 
+Maplecroft is a global risk analytics company that aims to standardise risk across a variety of different issues across the globe.
+Maplecroft refers to these issues as "indices", for example we have an environmental risk called Air Quality. 
 
-The project contains two simple models that represent an issue/index: `Index` and a score in time for that index: `IndexVersion`.
+The project contains two simple models that represent an index (`Index`) and instance in time of that index (`IndexVersion`).
+The `IndexVersion` model has a `score` attribute that provides the 0-10 risk score at that particular time.
+
+## Getting started
 
 To get started all you need is [Docker](https://docs.docker.com/):
-
-# Getting started
 
 Start the dev server for local development:
 
@@ -43,32 +44,28 @@ If you need to reload the database at any time simply re-run the load_data comma
 ---
 
 
-# Tasks
+## Tasks
 
 Your task is to update the `index` app to include the following api endpoints (for further details see below) 
 
-1. `/index/` - this endpoint should return all indices with there associated versions attached
-2. `/stats` - this endpoint should return the max, min and median
+1. `/index` - this endpoint should return all indices
+2. `/stats` - this endpoint should return the max, min and median for all indices
 3. `/{index_id}/windowed?time_from=<iso_string>&time_to=<iso_string>` - this endpoint should return the windowed/average of values
 
 ### Task 1 - List indices
-This endpoint lists all indices with each index including a `versions` key which is a list
-of its associated versions.
+This endpoint lists all indices. We should be able to sort by `name` and filter by `id`
 
 ```
 [{
     id: int
     name: string
-    versions:[{score: decimal, timestamp: string, version: int}] 
 }]
 
 ```
 
-We should be able to sort by `name` and filter by `id`
-
 
 ### Task 2 - Stats
-Return a list of stats objects that represent the maximum, minimum and median for each object e.g
+Return a list of stats objects that represent the maximum, minimum and median for each index e.g
 
 ```
 [{
@@ -97,4 +94,3 @@ It should accept two range query params that limit the returned scores
     }]
 }]
 ```
-
