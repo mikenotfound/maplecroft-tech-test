@@ -1,6 +1,8 @@
 # maplecroft-tech-test
 
-Welcome to the maplecroft techinical test! This project contains an api only pre-built django application.
+Welcome to the maplecroft techinical test.
+
+This project contains an api only pre-built django application.
 
 Maplecroft is a global risk analytics company that aims to standardise risk across a variety of different issues across the globe.
 Maplecroft refers to these issues as "indices", for example we have an environmental risk called Air Quality. 
