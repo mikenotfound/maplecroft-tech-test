@@ -1,6 +1,6 @@
 # maplecroft-tech-test
 
-Welcome to the maplecroft techinical test.
+Welcome to the maplecroft technical test.
 
 This project contains an api only pre-built django application.
 
@@ -52,7 +52,7 @@ Your task is to update the `index` app to include the following api endpoints (f
 
 1. `/index` - this endpoint should return all indices
 2. `/stats` - this endpoint should return the max, min and median for all indices
-3. `/{index_id}/windowed?time_from=<iso_string>&time_to=<iso_string>` - this endpoint should return the windowed/average of values
+3. `/{index_id}/windowed?time_from=<iso_string>&time_to=<iso_string>` - this endpoint should return the windowed/average of values. 
 
 ### Task 1 - List indices
 This endpoint lists all indices. We should be able to sort by `name` and filter by `id`
@@ -81,18 +81,20 @@ Return a list of stats objects that represent the maximum, minimum and median fo
 
 ### Task 3 - Windowed/Average
 A common way to display a large amount of historical data points on a graph is to average over a window.
-If we set the window to be a 24h period starting at 12pm (noon) your challenge is to aggregate all values
-for the preceding 24 hours and provide a single mean score.
 
-It should accept two range query params that limit the returned scores
+It should accept two range query params that limit the returned scores, both `time_from` and `time_to` are 
+required parameters.
 
+For example, if we set the `time_from` and `time_to` window to be a 24h period, your
+challenge will be to aggregate all scores for this period and provide a single mean score.
 ```
 [{
     id: int,
     name: string,
     averaged_scores: [{
-        timestamp: iso_format_string, #12pm,
-        score: # average of scores within last 24 hours        
+        time_from: iso_format_string,
+        time_to: iso_format_string, 
+        score: # average of scores 
     }]
 }]
 ```
@@ -100,6 +102,6 @@ It should accept two range query params that limit the returned scores
 ---
 **Note**
 
-For each task please provide some simple unit tests. We don't expect all edge cases to be covered.
+For each task please provide some simple unit tests. We do not expect all edge cases to be covered. 
 
 ---
