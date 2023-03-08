@@ -11,11 +11,18 @@ router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'users', UserCreateViewSet)
 
+from maplecroft.index.views import IndexListView, WindowedDetailView, StatsListView
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
     path('api-token-auth/', views.obtain_auth_token),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    path('index', IndexListView.as_view()),
+    path('stats', StatsListView.as_view()),
+    path('<int:pk>/windowed', WindowedDetailView.as_view()),
 
     # the 'api-root' from django rest-frameworks default router
     # http://www.django-rest-framework.org/api-guide/routers/#defaultrouter
